@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craft Project Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Craft Project Planner</h1>
+
+        <!-- Form to Add Project -->
+        <div class="form-container">
+            <input type="text" id="project-title" placeholder="Project Title">
+            <textarea id="project-description" placeholder="Project Description"></textarea>
+            <button onclick="addProject()">Add Project</button>
+        </div>
+
+        <!-- Project List -->
+        <div id="project-list"></div>
+    </div>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.project {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+}
+
+    </style>
+    <script src="script.js">
+        document.addEventListener("DOMContentLoaded", loadProjects);
+
+function loadProjects() {
+    fetch("http://localhost:5000/api/projects")
+        .then(response => response.json())
+        .then(projects => {
+            const projectList = document.getElementById("project-list");
+            projectList.innerHTML = "";
+            projects.forEach(project => {
+                const div = document.createElement("div");
+                div.classList.add("project");
+                div.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <p>Status: ${project.status}</p>
+                `;
+                projectList.appendChild(div);
+            });
+        })
+        .catch(error => console.error("Error loading projects:", error));
+}
+
+function addProject() {
+    const title = document.getElementById("project-title").value;
+    const description = document.getElementById("project-description").value;
+
+    if (!title) return;
+
+    const project = { title, description, status: "Not Started" };
+
+    fetch("http://localhost:5000/api/projects", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(project),
+    })
+    .then(response => response.json())
+    .then(() => {
+        loadProjects();
+        document.getElementById("project-title").value = "";
+        document.getElementById("project-description").value = "";
+    })
+    .catch(error => console.error("Error adding project:", error));
+}
+
+    </script>
+</body>
+</html>
