@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Craft Project Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A work-in-progress project-planning UI concept for creating craft projects, tracking descriptions, and showing project status.
 
-## Available Scripts
+## Current implementation
 
-In the project directory, you can run:
+- Static page assets: `index.html` and `style.css`
+- Browser-side project loading and creation logic: `script.js`
+- The JavaScript currently calls `http://localhost:5000/api/projects` for listing and creating projects.
+- The repository also contains a Create React App scaffold under `src/`; the root static page and React scaffold are currently separate/inconsistent implementations.
 
-### `npm start`
+## Important limitation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The backend API is not included in this repository, so the project list and create-project actions will not work in a clean clone unless a compatible API is running locally on port 5000. The app is not yet a self-contained, deployable full-stack project.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Run the current React scaffold
 
-### `npm test`
+Install Node.js, then run:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+npm start
+```
 
-### `npm run build`
+This starts the Create React App scaffold in `src/`; it does not provide the missing `/api/projects` backend for the root static page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Next steps
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Choose one frontend implementation (React or the static page) and remove the unused duplicate.
+2. Add the backend API and document its setup, data model, and API routes.
+3. Replace the hard-coded localhost API URL with a configurable environment value.
+4. Add input validation, loading/error states, and tests.
+5. Add screenshots and a short demo GIF after the end-to-end flow works.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project status
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Prototype / in progress.** Do not describe this as a complete full-stack planner until the backend is included and the end-to-end workflow has been tested.
